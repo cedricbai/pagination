@@ -51,7 +51,7 @@ function appendPages(pageList) {
 }
 
 	
-// Search function finds both name or email. If no results are found, change the header H2 to display No Matching Results, otherwise display default Matching Students.
+// Search function for searching name/e-mail. If no results are found, change the header H2 to display No Matching Results, otherwise display default Matching Students.
 function searchStudent() {	
 	//convert all the input name to lowercase and remove the whitespace from the beginning and ending
     var searchTerm = $('#search').val().toLowerCase().trim();
