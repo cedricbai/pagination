@@ -10,9 +10,9 @@ $('.page-header.cf').append($studentSearch);
 
 
 // Generate an array of page list and set every element's length to 10 pages
-function setPages(list) {
+function setPages(input_list) {
 	var pagesArray = [];
-	var originalList = list.slice();
+	var originalList = input_list.slice();
 	while (originalList.length) {
 		pagesArray.push(originalList.splice(0,10));
 	}
