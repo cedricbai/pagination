@@ -30,7 +30,7 @@ function setPages(input_list) {
 }
 
 
-// Append buttons to different pages. The number of pages to show is found from the pageList.length.
+// Append buttons to different pages. The number of pages to show is obtained from the pageList.length.
 function appendPages(pageList) {
 	$('.page').append(pagination);
 	var page_num = pageList.length;
