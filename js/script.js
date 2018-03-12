@@ -2,7 +2,7 @@
 var students = $('.student-item');
 const $studentSearch ='<div class="student-search"><input id="search" placeholder="Search for students..."><button>Search</button></div>';
 var pagination ='<div class="pagination"><ul></ul></div>';
-var studentList = setPages(studentItems);
+var studentList = setPages(students);
 
 // Appends the search option to the webpage
 $('.page-header.cf').append($studentSearch);
