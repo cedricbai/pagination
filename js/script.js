@@ -7,7 +7,17 @@ var studentList = setPages(students);
 // Appends the search option to the webpage
 $('.page-header.cf').append($studentSearch);
 
-
+// Display the current page, hide the rest. 
+function pageIndication(pageNumber, pageList) {
+  $(".student-list li").hide();
+  $.each(pageList, function(index, page){
+      if (pageNumber === index) {
+        $.each(page, function(i, listItem){
+          $(listItem).fadeIn('fast');
+        });
+      }
+  });
+}
 
 // Generate an array of page list and set every element's length to 10 pages
 function setPages(input_list) {
@@ -19,17 +29,6 @@ function setPages(input_list) {
 	return pagesArray;
 }
 
-// After generating the page array of students, only display the current page, hide the rest. 
-function pageIndication(pageNumber, pageList) {
-  $(".student-list li").hide();
-  $.each(pageList, function(index, page){
-      if (pageNumber === index) {
-        $.each(page, function(i, listItem){
-          $(listItem).fadeIn('fast');
-        });
-      }
-  });
-}
 
 // Append buttons to different pages. The number of pages to show is found from the pageList.length.
 function appendPages(pageList) {
