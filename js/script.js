@@ -52,12 +52,12 @@ function appendPages(pageList) {
 }
 
 	
-// Search function finds both name and/or email. If no results are found, change the header H2 to display No Matching Results, otherwise display default Matching Students.
+// Search function finds both name or email. If no results are found, change the header H2 to display No Matching Results, otherwise display default Matching Students.
 function searchStudent() {	
 	//convert all the input name to lowercase and remove the whitespace from the beginning and ending
     var searchTerm = $('#search').val().toLowerCase().trim();
 
-        var filteredStudents = students.filter(function(i) {
+        var SearchingResults = students.filter(function(i) {
         	var studentEmail = $(this).find('.email').text();
             var studentNames = $(this).find('h3').text();
             //even part of text matches, it will still show the information of the student
@@ -66,14 +66,15 @@ function searchStudent() {
             }
             return false;
         });
-        if (filteredStudents.length === 0 ) {
+        if (SearchingResults.length === 0 ) {
         	$('.page-header h2').text('No Matching Results');
         } else {
         	$('.page-header h2').text('Matching STUDENTS');
         }
-        var paginated_students = setPages(filteredStudents);
+	//add page numbers to to searching results too, delete the original pagination
+        var paginated_students = setPages(SearchingResults);
         $('.pagination').remove();
-        if (filteredStudents.length >= 10) {
+        if (SearchingResults.length >= 10) {
           appendPages(paginated_students);
         }
         pageIndication(0, paginated_students);
