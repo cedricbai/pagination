@@ -60,7 +60,7 @@ function searchStudent() {
         var filteredStudents = students.filter(function(i) {
         	var studentEmail = $(this).find('.email').text();
             var studentNames = $(this).find('h3').text();
-            //even part of text matches, it will still show the information of the studnet
+            //even part of text matches, it will still show the information of the student
             if (studentNames.indexOf(searchTerm) > -1 || studentEmail.indexOf(searchTerm) > -1) {
                 return true;
             }
