@@ -1,5 +1,5 @@
 //These are global variables
-var studentItems = $('.student-item');
+var students = $('.student-item');
 const $studentSearch ='<div class="student-search"><input id="search" placeholder="Search for students..."><button>Search</button></div>';
 var pagination ='<div class="pagination"><ul></ul></div>';
 var studentList = setPages(studentItems);
@@ -11,10 +11,10 @@ $('.page-header.cf').append($studentSearch);
 
 // Generate an array of page list and set every element's length to 10 pages
 function setPages(list) {
-	var oldList = list.slice();
 	var pagesArray = [];
-	while (oldList.length) {
-		pagesArray.push(oldList.splice(0,10));
+	var originalList = list.slice();
+	while (originalList.length) {
+		pagesArray.push(originalList.splice(0,10));
 	}
 	return pagesArray;
 }
@@ -52,12 +52,12 @@ function appendPages(pageList) {
 }
 
 	
-// Search function finds both name and/or email. If no results are found, change the header H2 to display No Matching Results, otherwise display default Students title.
+// Search function finds both name and/or email. If no results are found, change the header H2 to display No Matching Results, otherwise display default Matching Students.
 function searchStudent() {	
 	//convert all the input name to lowercase and remove the whitespace from the beginning and ending
     var searchTerm = $('#search').val().toLowerCase().trim();
 
-        var filteredStudents = studentItems.filter(function(i) {
+        var filteredStudents = students.filter(function(i) {
         	var studentEmail = $(this).find('.email').text();
             var studentNames = $(this).find('h3').text();
             //even part of text matches, it will still show the information of the studnet
@@ -69,7 +69,7 @@ function searchStudent() {
         if (filteredStudents.length === 0 ) {
         	$('.page-header h2').text('No Matching Results');
         } else {
-        	$('.page-header h2').text('STUDENTS');
+        	$('.page-header h2').text('Matching STUDENTS');
         }
         var paginated_students = setPages(filteredStudents);
         $('.pagination').remove();
