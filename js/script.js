@@ -21,20 +21,20 @@ function pageIndication(pageNumber, pageList) {
 
 // Generate an array of page list and set every element's length to 10 pages
 function setPages(input_list) {
-	var pagesArray = [];
+	var pages_array = [];
 	var originalList = input_list.slice();
 	while (originalList.length) {
-		pagesArray.push(originalList.splice(0,10));
+		pages_array.push(originalList.splice(0,10));
 	}
-	return pagesArray;
+	return pages_array;
 }
 
 
 // Append buttons to different pages. The number of pages to show is found from the pageList.length.
 function appendPages(pageList) {
 	$('.page').append(pagination);
-	var numPages = pageList.length;
-	for (var i = 1; i <= numPages; i++) {
+	var page_num = pageList.length;
+	for (var i = 1; i <= page_num; i++) {
 		var buttons = '<li><a href="#">' + i + '</a></li>';
 		$('.pagination ul').append(buttons);
 	}
@@ -42,8 +42,8 @@ function appendPages(pageList) {
 
 	//Add click listeners
 	  $(".pagination ul li a").on("click", function(e) {
-	    var pageSelection = parseInt($(this)[0].text) - 1;
-	    pageIndication(pageSelection, pageList);
+	    var pageSelected = parseInt($(this)[0].text) - 1;
+	    pageIndication(pageSelected, pageList);
 	    $(".pagination ul li a").removeClass();
 	    $(this).addClass("active");
 	    e.preventDefault();
@@ -57,10 +57,10 @@ function searchStudent() {
     var searchTerm = $('#search').val().toLowerCase().trim();
 
         var SearchingResults = students.filter(function(i) {
+		var studentName = $(this).find('h3').text();
         	var studentEmail = $(this).find('.email').text();
-            var studentNames = $(this).find('h3').text();
-            //even part of text matches, it will still show the information of the student
-            if (studentNames.indexOf(searchTerm) > -1 || studentEmail.indexOf(searchTerm) > -1) {
+            //Even part of text matches, it will still show the information of the student
+            if (studentName.indexOf(searchTerm) > -1 || studentEmail.indexOf(searchTerm) > -1) {
                 return true;
             }
             return false;
@@ -73,7 +73,7 @@ function searchStudent() {
 	//add page numbers to to searching results too, delete the original pagination
         var paginated_students = setPages(SearchingResults);
         $('.pagination').remove();
-        if (SearchingResults.length >= 10) {
+        if (SearchingResults.length > 10) {
           appendPages(paginated_students);
         }
         pageIndication(0, paginated_students);
